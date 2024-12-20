@@ -257,6 +257,15 @@ const handlePlantsClick = (e) => {
   };
 
   const [addedToCart, setAddedToCart] = useState({});
+  
+      // Sync addedToCart state with cartItems
+    useEffect(() => {
+        const updatedCartStatus = {};
+        cartItems.forEach(item => {
+            updatedCartStatus[item.name] = true; // Mark items in the cart
+        });
+        setAddedToCart(updatedCartStatus);
+    }, [cartItems]);
 
   const handleAddToCart = (product) => {
     console.log("Add to cart clicked for:", product.name);
